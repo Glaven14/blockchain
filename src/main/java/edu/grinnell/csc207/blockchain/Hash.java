@@ -8,7 +8,6 @@ public class Hash {
     private byte[] data;
 
     /**
-     * 
      * @param data constructs a new Hash object that contains the given hash (as an array of bytes).
      */
     public Hash(byte[] data) {
@@ -16,15 +15,13 @@ public class Hash {
     }
 
     /**
-     * 
      * @return the hash contained in this object.
      */
     public byte[] getData() {
-      return data;
+        return data;
     }
 
     /**
-     * 
      * @return true if this hash meets the criteria for validity.
      */
     public boolean isValid() {
@@ -55,6 +52,7 @@ public class Hash {
     }
 
     /**
+     * @param other Object given to determine equality
      * @return true if this hash is structurally equal to the argument.
      */
     public boolean equals(Object other) {

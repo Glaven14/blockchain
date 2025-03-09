@@ -19,7 +19,6 @@ public class Block {
     private Hash hash;
 
     /**
-     * 
      * @param num the block's number
      * @param amount data contained in block
      * @param prevHash the previous hash (number-1)
@@ -62,7 +61,6 @@ public class Block {
     }
 
     /**
-     * 
      * @param num the block's number
      * @param amount data contained in block
      * @param prevHash the previous hash (number-1)
@@ -86,7 +84,6 @@ public class Block {
     }
 
     /**
-     * 
      * @param msg String of data points "number, amount, (prevHash), nonce" in order.
      * @return a byte array representation of a possible hash.
      * @throws NoSuchAlgorithmException
@@ -99,7 +96,6 @@ public class Block {
     }
 
     /**
-     * 
      * @return the number of this block.
      */
     public int getNum() {
@@ -107,7 +103,6 @@ public class Block {
     }
 
     /**
-     * 
      * @return the amount transferred that is recorded in this block.
      */
     public int getAmount() {
@@ -115,7 +110,6 @@ public class Block {
     }
 
     /**
-     * 
      * @return the nonce of this block.
      */
     public long getNonce() {
@@ -123,7 +117,6 @@ public class Block {
     }
 
     /**
-     * 
      * @return the hash of the previous block in the blockchain.
      */
     public Hash getPrevHash() {
@@ -131,7 +124,6 @@ public class Block {
     }
 
     /**
-     * 
      * @return the hash of this block.
      */
     public Hash getHash() {
@@ -142,11 +134,11 @@ public class Block {
      * @return a string representation of the block.
      */
     public String toString() {
-        return "Block " + this.getNum() + 
-               " (Amount: " + this.getAmount() + 
-               ", Nonce: " + this.getNonce() +
-               ", prevHash: " + this.getPrevHash() +
-               ", hash: " + this.getHash() + ")";
+        return "Block " + this.getNum() 
+                + " (Amount: " + this.getAmount() 
+                + ", Nonce: " + this.getNonce() 
+                + ", prevHash: " + this.getPrevHash() 
+                + ", hash: " + this.getHash() + ")";
     }
 
 }

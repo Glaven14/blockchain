@@ -12,7 +12,7 @@ public class BlockChain {
         private Block value;
         private Node next;
         
-        public Node (Block val, Node newNode) {
+        public Node(Block val, Node newNode) {
             value = val;
             next = newNode;
         }
@@ -23,7 +23,6 @@ public class BlockChain {
     private Node last;
 
     /**
-     * 
      * @param initial creates a BlockChain that starts with the given initial amount.
      * @throws NoSuchAlgorithmException 
      */
@@ -33,21 +32,22 @@ public class BlockChain {
     }
 
     /**
-     * 
      * @param amount creates a Block that starts with the given initial amount.
      * @return a valid block to be added to the BlockChain.
      * @throws NoSuchAlgorithmException 
      */
     public Block mine(int amount) throws NoSuchAlgorithmException {
+        byte[] emptyByteArr = new byte[1];
+        Hash emptyHash = new Hash(emptyByteArr);
+
         if (last == null) {
-            return new Block(0, amount, null);
+            return new Block(0, amount, emptyHash);
         }
         int num = last.value.getNum() + 1;
-        return new Block(num, amount, null);
+        return new Block(num, amount, last.value.getHash());
     }
 
     /**
-     * 
      * @return the size of the blockchain.
      */
     public int getSize() {
@@ -55,7 +55,6 @@ public class BlockChain {
     }
 
     /**
-     * 
      * @param blk adds this block to the list.
      * @throws IllegalArgumentException
      */
@@ -69,24 +68,22 @@ public class BlockChain {
     }
 
     /**
-     * 
      * @return true. unless the chain only contains a single block then does nothing and false.
      */
     public boolean removeLast() {
         if (this.getSize() <= 1) {
             return false;
         }
-        Node cur = first;
-        for (int i = 0; i < this.getSize() - 1; i++) {
+        Node cur = this.first;
+        for (int i = 0; i < this.getSize() - 2; i++) {
             cur = cur.next;
         }
-        last = cur;
-        last.next = null;
+        this.last = cur;
+        this.last.next = null;
         return true;
     }
 
     /**
-     * 
      * @return the hash of the last block in the chain.
      */ 
     public Hash getHash() {
@@ -94,7 +91,6 @@ public class BlockChain {
     }
 
     /**
-     * 
      * @return true if all blocks are valid
      */
     public boolean isValidBlockChain() {
@@ -106,7 +102,7 @@ public class BlockChain {
                 isValid = false;
             }
             amount += cur.value.getAmount();
-            if (amount < 0) {
+            if (amount < 0 || amount > first.value.getAmount()) {
                 isValid = false;
             }
             cur = cur.next;
@@ -123,8 +119,8 @@ public class BlockChain {
         int amount = initial;
         cur = cur.next;
         for (int i = 1; i < this.getSize(); i++) {
-           amount += cur.value.getAmount();
-           cur = cur.next;
+            amount += cur.value.getAmount();
+            cur = cur.next;
         }
         System.out.println("Alice: " + amount + ", Bob: " + (initial - amount));
     }
@@ -141,5 +137,5 @@ public class BlockChain {
         }
         return ret;
     }
-    
+
 }
